@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  client:
+    container_name: client
+    image: client
+    build:
+      context: .
+      dockerfile: ./packages/client/Dockerfile
+      target: client
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
+  server:
+    container_name: server
+    image: server
+    build:
+      context: .
+      dockerfile: ./packages/server/Dockerfile
+      target: server
+    ports:
+      - 3001:3001
